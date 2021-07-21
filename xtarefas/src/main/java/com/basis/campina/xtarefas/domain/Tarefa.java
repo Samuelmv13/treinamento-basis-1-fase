@@ -3,15 +3,21 @@ package com.basis.campina.xtarefas.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_TAREFA")
@@ -35,12 +41,13 @@ public class Tarefa implements Serializable {
     private LocalDate dataInicio;
 
     @Column(name = "data_nascimento")
-    private LocalDate status;
+    private String status;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_anexo")
+    private List<Anexo> anexos;
 
     @Column(name = "data_nascimento")
-    private LocalDate anexo;
-
-    @Column(name = "data_nascimento")
-    private LocalDate responsavel;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Responsavel.class)
+    private Responsavel responsavel;
 }
-id, nome, dataConclusao, dataInicio, status, anexo, responsavel;
