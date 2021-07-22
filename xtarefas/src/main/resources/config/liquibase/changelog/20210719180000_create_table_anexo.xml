@@ -13,9 +13,17 @@
             <column name="file" type="text" remarks="Registro dos files">
                 <constraints nullable="false"></constraints>
             </column>
-            <column name="file_name" type="VARCHAR(255)" remarks="Nome dos files">
+            <column name="file_name" type="text" remarks="Nome dos files">
                 <constraints nullable="false"></constraints>
             </column>
+            <column name="id_tarefa" type="bigint" remarks="coluna para anexo">
+            </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="20210719180000-02" author="samuel.vasconcelos">
+        <addForeignKeyConstraint baseTableName="TB_ANEXO" baseColumnNames="id_tarefa"
+                                 constraintName="fk_anexo_tarefa" referencedTableName="TB_TAREFA"
+                                 referencedColumnNames="id_tarefa"/>
     </changeSet>
 </databaseChangeLog>

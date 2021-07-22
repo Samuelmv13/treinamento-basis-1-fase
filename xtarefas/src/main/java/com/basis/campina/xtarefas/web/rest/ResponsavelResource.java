@@ -39,7 +39,7 @@ public class ResponsavelResource {
     @PostMapping
     public ResponseEntity<ResponsavelDTO> inserir(@RequestBody ResponsavelDTO responsavelDTO) throws URISyntaxException {
         ResponsavelDTO dto = responsavelService.salvar(responsavelDTO);
-        return ResponseEntity.created(new URI("/api/salas")).body(dto);
+        return ResponseEntity.created(new URI("/api/responsaveis")).body(dto);
     }
 
     @PutMapping("/{id}")

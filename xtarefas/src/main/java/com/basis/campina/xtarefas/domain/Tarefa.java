@@ -2,6 +2,7 @@ package com.basis.campina.xtarefas.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,27 +29,26 @@ public class Tarefa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tarefa")
-    @SequenceGenerator(name = "seq_tarefa", allocationSize = 1, sequenceName = "seq_tarefa", initialValue = 1)
+    @SequenceGenerator(name = "seq_tarefa", allocationSize = 1, sequenceName = "seq_tarefa")
     @Column(name = "id_tarefa")
     private Long id;
 
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "email")
+    @Column(name = "data_coclusao")
     private LocalDate dataConclusao;
 
-    @Column(name = "data_nascimento")
+    @Column(name = "data_inicio")
     private LocalDate dataInicio;
 
-    @Column(name = "data_nascimento")
+    @Column(name = "status")
     private String status;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_anexo")
-    private List<Anexo> anexos;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "tarefa")
+    private List<Anexo> anexos = new ArrayList<>();
 
-    @Column(name = "data_nascimento")
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Responsavel.class)
+    @ManyToOne
+    @JoinColumn(name = "id_responsavel")
     private Responsavel responsavel;
 }

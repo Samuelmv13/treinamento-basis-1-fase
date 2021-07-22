@@ -1,10 +1,10 @@
 version: '2'
 services:
-  minio:
+  documentos-minio:
     image: minio/minio
     ports:
       - 9000:9000
     environment:
-      - 'MINIO_ACCESS_KEY=xtarefas'
-      - 'MINIO_SECRET_KEY=xtarefas'
+      - 'MINIO_ACCESS_KEY=accesskey'
+      - 'MINIO_SECRET_KEY=secretkey'
     command: server /data

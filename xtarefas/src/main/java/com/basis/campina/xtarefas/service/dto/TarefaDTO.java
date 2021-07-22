@@ -1,10 +1,12 @@
 package com.basis.campina.xtarefas.service.dto;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -15,15 +17,19 @@ public class TarefaDTO implements Serializable {
 
     private Long id;
 
+    @NotNull
     private String nome;
 
+    @NotNull
     private LocalDate dataConclusao;
 
+    @NotNull
     private LocalDate dataInicio;
 
+    @NotNull
     private String status;
 
-    private List<AnexoDTO> anexo;
+    private List<AnexoDTO> anexos = new ArrayList<>();
 
     private ResponsavelDTO responsavel;
 

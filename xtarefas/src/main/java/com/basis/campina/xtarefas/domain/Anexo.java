@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -20,7 +22,7 @@ public class Anexo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_anexo")
-    @SequenceGenerator(name = "seq_anexo", allocationSize = 1, sequenceName = "seq_anexo", initialValue = 1)
+    @SequenceGenerator(name = "seq_anexo", allocationSize = 1, sequenceName = "seq_anexo")
     @Column(name = "id_anexo")
     private Long id;
 
@@ -30,5 +32,8 @@ public class Anexo implements Serializable {
     @Column(name = "file_name")
     private String fileName;
 
+    @ManyToOne
+    @JoinColumn(name = "id_tarefa", referencedColumnName = "id_tarefa")
+    private Tarefa tarefa;
 }
 
